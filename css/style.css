@@ -1,1 +1,5 @@
 @import "normalize.css";
+
+body {background: lightblue;padding: 20px;}
+pre {color: black}
+img {position: relative;}​
