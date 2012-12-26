@@ -14,19 +14,15 @@
                     this.canvas.getContext('2d').drawImage(this, 0, 0, this.width, this.height);
                 }
 
-                var width = 48,
-                        hexColorArr = [];
+                var pixelData = this.canvas.getContext('2d').getImageData(0, 0, 48, 48).data,
+                    hexColorArr = [];
 
-                for (var i = 0; i < width; i++) {
-                    var pixelData = this.canvas.getContext('2d').getImageData(i, 15, 1, 1).data,
-                            hexColor = rgbToHex(pixelData[0], pixelData[1], pixelData[2]);
-                    if(hexColor != '#000000'){
-                        hexColorArr.push(i+'em '+'1em '+hexColor);
-                    }
-                    console.log(pixelData.length);
+                for (var i=0;i<pixelData.length;i+=4){
+                    var hexColor = rgbToHex(pixelData[i+0], pixelData[i+1], pixelData[i+2]);
+                        hexColorArr.push(hexColor);
                 }
 
-                $('.b-output').css('box-shadow', hexColorArr.join());
+                console.log(hexColorArr.join());
             });
 
         });
@@ -42,8 +38,6 @@
     </script>
 </head>
 <body>
-<h1>Hello World!</h1>
-<p>first commit page.</p>
 <img src="/img/minecraft.png">
 <i class="b-output"></i>
 </body>
