@@ -7,8 +7,7 @@
     <script type="text/javascript">
         $(function () {
             $('img').click(function () {
-
-                if (!this.canvas) {
+                if (!$('.b-original').canvas) {
                     this.canvas = $('<canvas/>').css({width:this.width + 'px', height:this.height + 'px'})[0];
                     this.canvas.getContext('2d').drawImage(this, 0, 0, this.width, this.height);
                 }
@@ -41,12 +40,9 @@
     </script>
 </head>
 <body>
-<form onSubmit="return false">
-    <label for="image_url">Image Url</label>
-    <input id="image_url" name="image_url" type="text" value="">
-    <button onclick="$('.b-original').attr('src', $('#image_url').attr('value'));">Go!</button>
-</form>
-<img class="b-original" src="img/minecraft.png">
-<div class="b-output"></div>
+<div class="b-wrapper">
+    <img class="b-original" src="img/minecraft.png">
+    <div class="b-output"></div>
+</div>
 </body>
 </html>

@@ -1,15 +1,13 @@
 @import "normalize.css";
 
-body
-{
-    background: lightblue;
-    padding: 20px;
-    font: 13px/17px Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
-}
-
 img
 {
     position: relative;
+}
+
+.b-wrapper{
+    width: 400px;
+    margin: 200px auto 0;
 }
 
 .b-output{
