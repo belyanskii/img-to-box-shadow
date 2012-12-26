@@ -27,8 +27,14 @@
                     if(y == 49){
                         y = 0;
                     }
-                    var rgbaColor = x+'em '+y+'em rgba('+pixelData[i+0]+','+pixelData[i+1]+','+pixelData[i+2]+','+pixelData[i+3]+')';
-                    rgbaColorArr.push(rgbaColor);
+                    var alpha = pixelData[i+3];
+                    if(alpha != 255){
+                        alpha = '0.'+pixelData[i+3];
+                    }
+                    var rgbaColor = x+'em '+y+'em rgba('+pixelData[i+0]+','+pixelData[i+1]+','+pixelData[i+2]+','+alpha+')';
+                    if(pixelData[i+3] != 0){
+                        rgbaColorArr.push(rgbaColor);
+                    }
                 }
                 console.log(rgbaColorArr.join());
                 $('.b-output').css('box-shadow', rgbaColorArr.join());
@@ -38,6 +44,6 @@
 </head>
 <body>
 <img src="img/minecraft.png">
-<i class="b-output"></i>
+<div class="b-output"></div>
 </body>
 </html>
