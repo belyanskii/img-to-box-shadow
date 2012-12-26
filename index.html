@@ -27,11 +27,8 @@
                     if(y == 49){
                         y = 0;
                     }
-                    var alpha = pixelData[i+3];
-                    if(alpha != 255){
-                        alpha = '0.'+pixelData[i+3];
-                    }
-                    var rgbaColor = x+'em '+y+'em rgba('+pixelData[i+0]+','+pixelData[i+1]+','+pixelData[i+2]+','+alpha+')';
+                    var alpha = pixelData[i+3]/255;
+                    var rgbaColor = x+'em '+y+'em rgba('+pixelData[i+0]+','+pixelData[i+1]+','+pixelData[i+2]+','+alpha.toFixed(3)+')';
                     if(pixelData[i+3] != 0){
                         rgbaColorArr.push(rgbaColor);
                     }
