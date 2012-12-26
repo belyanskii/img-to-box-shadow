@@ -15,8 +15,7 @@
                 }
 
                 var pixelData = this.canvas.getContext('2d').getImageData(0, 0, 48, 48).data,
-                    hexColorArr = [],
-                    bsData = [];
+                    rgbaColorArr = [];
 
                 for (var i= 0, x = 1, y = 0;i<pixelData.length;i+=4,x+=1){
                     if(i%47 == 0){
@@ -28,23 +27,13 @@
                     if(y == 49){
                         y = 0;
                     }
-                    var hexColor = x+'em '+y+'em '+rgbToHex(pixelData[i+0], pixelData[i+1], pixelData[i+2]);
-                    hexColorArr.push(hexColor);
+                    var rgbaColor = x+'em '+y+'em rgba('+pixelData[i+0]+','+pixelData[i+1]+','+pixelData[i+2]+','+pixelData[i+3]+')';
+                    rgbaColorArr.push(rgbaColor);
                 }
-                console.log(hexColorArr.join());
-                $('.b-output').css('box-shadow', hexColorArr.join());
+                console.log(rgbaColorArr.join());
+                $('.b-output').css('box-shadow', rgbaColorArr.join());
             });
-
         });
-
-        function componentToHex(c) {
-            var hex = c.toString(16);
-            return hex.length == 1 ? "0" + hex : hex;
-        }
-
-        function rgbToHex(r, g, b) {
-            return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
-        }
     </script>
 </head>
 <body>
