@@ -1,5 +1,23 @@
 @import "normalize.css";
 
-body {background: lightblue;padding: 20px;}
-pre {color: black}
-img {position: relative;}​
+body
+{
+    background: lightblue;
+    padding: 20px;
+    font: 13px/17px Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+}
+
+img
+{
+    position: relative;
+}
+
+.b-output{
+    width: 1em;
+    height: 1em;
+    font-size: 2px;
+    margin-left: 20px;
+    position: relative;
+    vertical-align: top;
+    display: inline-block;
+}

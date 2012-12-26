@@ -4,49 +4,47 @@
     <title>Image to box-shadow converter</title>
     <link rel="stylesheet" href="css/style.css">
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript">
+        $(function () {
+
+            $('img').click(function () {
+
+                if (!this.canvas) {
+                    this.canvas = $('<canvas/>').css({width:this.width + 'px', height:this.height + 'px'})[0];
+                    this.canvas.getContext('2d').drawImage(this, 0, 0, this.width, this.height);
+                }
+
+                var width = 48,
+                        hexColorArr = [];
+
+                for (var i = 0; i < width; i++) {
+                    var pixelData = this.canvas.getContext('2d').getImageData(i, 15, 1, 1).data,
+                            hexColor = rgbToHex(pixelData[0], pixelData[1], pixelData[2]);
+                    if(hexColor != '#000000'){
+                        hexColorArr.push(i+'em '+'1em '+hexColor);
+                    }
+                    console.log(pixelData.length);
+                }
+
+                $('.b-output').css('box-shadow', hexColorArr.join());
+            });
+
+        });
+
+        function componentToHex(c) {
+            var hex = c.toString(16);
+            return hex.length == 1 ? "0" + hex : hex;
+        }
+
+        function rgbToHex(r, g, b) {
+            return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+        }
+    </script>
 </head>
 <body>
 <h1>Hello World!</h1>
 <p>first commit page.</p>
 <img src="/img/minecraft.png">
-
-<pre id="output"></pre>
-<script type="text/javascript">
-    $(function () {
-
-        $('img').click(function () {
-
-            if (!this.canvas) {
-                this.canvas = $('<canvas/>').css({width:this.width + 'px', height:this.height + 'px'})[0];
-                this.canvas.getContext('2d').drawImage(this, 0, 0, this.width, this.height);
-            }
-
-            var width = 48,
-                hexColorArr = [];
-
-            for (var i = 0; i < width; i++) {
-                var pixelData = this.canvas.getContext('2d').getImageData(i, 10, 1, 1).data,
-                    hexColor = rgbToHex(pixelData[0], pixelData[1], pixelData[2]);
-                    hexColorArr.push(hexColor);
-
-                $('#output').html('R: ' + pixelData[0] + '<br>G: ' + pixelData[1] + '<br>B: ' + pixelData[2] + '<br>A: ' + pixelData[3]);
-                $('body').css('background', hexColor);
-            }
-
-            console.log(hexColorArr);
-
-        });
-
-    });
-
-    function componentToHex(c) {
-        var hex = c.toString(16);
-        return hex.length == 1 ? "0" + hex : hex;
-    }
-
-    function rgbToHex(r, g, b) {
-        return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
-    }
-</script>
+<i class="b-output"></i>
 </body>
 </html>
