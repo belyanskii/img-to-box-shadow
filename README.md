@@ -1,5 +1,4 @@
-img-to-box-shadow
+Javascript converter image to box-shadow code.
 =================
 
-Convert image to box-shadow
 Demo - http://belyanskii.github.com/img-to-box-shadow/
