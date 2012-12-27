@@ -7,8 +7,24 @@
     <script type="text/javascript" src="js/image_to_box_shadow.js"></script>
     <script type="text/javascript">
         $(function(){
-            $('img').load(function(){
+            $('img').click(function(){
                 imageToBoxShadow($('.b-original'), $('.b-output'));
+            });
+
+            $('.b-original_src').change(function(){
+
+                var oFReader = new FileReader(),
+                    rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i,
+                    image_src = $('.b-original_src')[0].files;
+
+                oFReader.onload = function (oFREvent) {
+                    $('.b-original').attr('src', oFREvent.target.result);
+                };
+
+                if (image_src.length === 0) { return; }
+                var oFile = image_src[0];
+                if (!rFilter.test(oFile.type)) { alert("You must select a valid image file!"); return; }
+                oFReader.readAsDataURL(oFile);
             });
         });
     </script>
@@ -17,6 +33,9 @@
 <div class="b-wrapper">
     <img class="b-original" src="img/minecraft.png">
     <div class="b-output"></div>
+    <input class="b-original_src" type="file" name="image_src">
+    <p>click on image to convert</p>
 </div>
 </body>
+
 </html>
